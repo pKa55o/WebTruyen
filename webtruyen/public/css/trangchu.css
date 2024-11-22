@@ -1,0 +1,420 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: rgb(232, 232, 232);
+}
+
+.container1 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    gap: 150px;
+    background-color: #483d8b;
+}
+
+.title {
+    margin-left: 150px;
+}
+
+.title span a {
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+}
+
+.search-bar {
+    width: 300px;
+    height: 40px;
+    display: flex;
+    gap: 0;
+}
+
+.search-bar input {
+    width: 250px;
+    height: 30px;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid black;
+}
+
+.search-bar button {
+    width: 40px;
+    height: 33px;
+    border: none;
+    background-color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+nav {
+    width: 100%;
+    height: 40px;
+    background-color: #e4e4e4;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 60px;
+}
+
+.big-navbar {
+    position: relative;
+    color: black;
+    font-size: large;
+    font-weight: 500;
+}
+
+.title-menu a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    background-color: white;
+    box-shadow: 0 1px 2px 2px rgba(199, 199, 199, 0.463);
+    width: 500px;
+    height: 250px;
+    z-index: 1;
+}
+
+.content table {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+}
+
+.content table tr td {
+    text-align: left;
+}
+
+.content table tr td a {
+    text-decoration: none;
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.content2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -60%;
+    background-color: white;
+    box-shadow: 0 1px 2px 2px rgba(199, 199, 199, 0.463);
+    width: 250px;
+    height: 250px;
+    z-index: 1;
+}
+
+.content2 table {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+}
+
+.content2 table tr td {
+    text-align: left;
+}
+
+.content2 table tr td a {
+    text-decoration: none;
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.main-content {
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+}
+
+.de-cu {
+    width: 95%;
+    height: 400px;
+    margin-top: 0;
+}
+
+.title-de-cu {
+    width: 100%;
+    height: 50px;
+}
+
+.title-de-cu p {
+    font-size: 28px;
+    color: #9bcd9b;
+}
+
+.slider {
+    width: 100%;
+    height: 300px;
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+}
+.slider .list {
+    position: absolute;
+    width: max-content;
+    height: 100%;
+    left: 0;
+    top: 0;
+    display: flex;
+    gap: 30px;
+    transition: 1.5s;
+}
+
+.item {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-truyen {
+    width: 100%;
+    height: 300px;
+}
+
+.img-truyen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.tieu-de-truyen {
+    position: absolute;
+    top: 70%;
+    width: 200px;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 0.723);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.ten-truyen span {
+    font-size: 20px;
+    text-overflow: ellipsis;
+    color: white;
+}
+
+.info {
+    display: flex;
+    gap: 25px;
+}
+
+.info span {
+    font-size: 14px;
+    color: white;
+}
+.slider .buttons {
+    position: absolute;
+    top: 40%;
+    left: 2.5%;
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+}
+.slider .buttons button {
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: rgba(229, 229, 229, 0.333);
+    color: black;
+    border: none;
+    font-size: 20px;
+    font-family: monospace;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.slider .buttons button:hover {
+    background-color: #483d8b;
+    color: #fff;
+}
+@media screen and (max-width: 768px) {
+    .slider {
+        height: 400px;
+    }
+}
+
+.tiep-theo {
+    width: 95%;
+    min-height: 70vh;
+    display: flex;
+}
+
+.list-truyen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+}
+
+.danh-sach {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.truyen {
+    width: 150px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.truyen .img-truyen {
+    width: 100%;
+    height: 170px;
+}
+
+.truyen .img-truyen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.truyen .thong-tin-truyen {
+    position: static;
+    width: 150px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.723);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.truyen .thong-tin-truyen span {
+    font-size: 14px;
+}
+
+.truyen .ten-truyen {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.truyen .ten-truyen span a {
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+}
+
+footer {
+    width: 100%;
+    min-height: 150px;
+    background-color: #483d8b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.copyright {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    color: white;
+}
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    z-index: 1000;
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+/*  */
+#auth-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.auth-link {
+    margin-left: 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.auth-link:hover {
+    background-color: #fff;
+    color: #4a3d8b; /* Giữ nguyên màu nền xanh */
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-toggle {
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #4a3d8b;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.dropdown-menu a:hover {
+    background-color: #6b5da9;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
