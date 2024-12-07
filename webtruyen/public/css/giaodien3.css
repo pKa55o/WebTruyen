@@ -1,0 +1,331 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    background-color: black;
+}
+
+.container1 {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    gap: 200px;
+    background-color: #483d8b;
+}
+
+.titleweb {
+    margin-left: 150px;
+}
+
+.titleweb span a {
+    font-size: 28px;
+    text-decoration: none;
+    color: white;
+}
+
+.search-bar {
+    width: 300px;
+    height: 40px;
+    display: flex;
+    gap: 0;
+}
+
+.search-bar input {
+    width: 250px;
+    height: 30px;
+    font-size: 14px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid black;
+}
+
+.search-bar button {
+    width: 40px;
+    height: 33px;
+    border: none;
+    background-color: white;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+nav {
+    width: 100%;
+    height: 40px;
+    background-color: #e4e4e4;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    gap: 60px;
+}
+
+.big-navbar {
+    position: relative;
+    color: black;
+    font-size: large;
+    font-weight: 500;
+}
+
+.title-menu a {
+    color: black;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    background-color: white;
+    box-shadow: 0 1px 2px 2px rgba(199, 199, 199, 0.463);
+    width: 500px;
+    height: 250px;
+    z-index: 1;
+}
+
+.content table {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+}
+
+.content table tr td {
+    text-align: left;
+}
+
+.content table tr td a {
+    text-decoration: none;
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.content2 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: -60%;
+    background-color: white;
+    box-shadow: 0 1px 2px 2px rgba(199, 199, 199, 0.463);
+    width: 250px;
+    height: 250px;
+    z-index: 1;
+}
+
+.content2 table {
+    width: 90%;
+    height: 100%;
+    margin-left: 5%;
+}
+
+.content2 table tr td {
+    text-align: left;
+}
+
+.content2 table tr td a {
+    text-decoration: none;
+    text-overflow: ellipsis;
+    color: black;
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+}
+
+.maincontent {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thongtinchinh {
+    background-color: white;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.duongdan {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.duongdan a {
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.tentruyen {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-left: 20px;
+}
+
+.tentruyen a {
+    text-decoration: none;
+    font-size: 28px;
+}
+
+#sochapter {
+    font-size: 24px;
+}
+
+.huongdan {
+    width: 98%;
+    margin-left: 1%;
+    border-radius: 8px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #31708f34;
+}
+
+.huongdan span {
+    color: #31708f;
+}
+
+.chucnang {
+    display: flex;
+    width: 100%;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.chucnang a {
+    text-decoration: none;
+    font-size: 24px;
+}
+
+#buttonrollback, #buttonturnup {
+    width: 30px;
+    height: 30px;
+    background-color: #473d8bd9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+.chucnang select {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#theodoi {
+    background-color: #483d8b;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#progress {
+    position: fixed;
+    bottom: 60px;
+    right: 10px;
+    height: 70px;
+    width: 70px;
+    display: none;
+    place-items: center;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
+#progress-value {
+    display: block;
+    height: calc(100% - 15px);
+    width: calc(100% - 15px);
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    color: #001a2e;
+}
+
+#progress-value:hover {
+    display: block;
+    height: calc(100% - 15px);
+    width: calc(100% - 15px);
+    background-color: #ffffff;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 35px;
+    color: #001a2e;
+}
+
+#menuchapter {
+    position: fixed;
+    width: 100%;
+    height: 45px;
+    bottom: 0px;
+    display: none;
+    place-items: center;
+    z-index: 1;
+    background-color: white;
+}
+#menuchucnang {
+    display: flex;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#menuchucnang a {
+    text-decoration: none;
+    font-size: 24px;
+}
+
+#menuchucnang select {
+    width: 150px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#menutheodoi {
+    background-color: #483d8b;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+#menutheodoi span {
+    font-size: 16px;
+}
+
+#menutheodoi i {
+    font-size: 16px;
+}

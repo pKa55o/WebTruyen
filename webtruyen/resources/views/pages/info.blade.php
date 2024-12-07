@@ -8,7 +8,7 @@
                 loại</a><i class="fa-solid fa-angles-right" style="color: #808080;"></i><a href="">Mày Nói Gì Cơ?</a>
         </div>
         <div class="thongtintruyen">
-            <div class="title">
+            <div class="titlecuatruyen">
                 <span id="name">Mày Nói Gì Cơ?</span>
                 <span id="dayupate"><i>[Cập nhật lúc: 2024-11-21 14:55:46]</i></span>
             </div>
@@ -39,7 +39,7 @@
                             <span>10 người theo dõi</span>
                         </div>
                         <div class="line2">
-                            <a href="">Đọc từ đầu</a><a href="">Đọc mới nhất</a><a href="">Đọc tiếp <i
+                            <a href="{{ route('giaodien3') }}">Đọc từ đầu</a><a href="">Đọc mới nhất</a><a href="">Đọc tiếp <i
                                     class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                         </div>
                     </div>

@@ -30,4 +30,8 @@ class IndexController extends Controller
     {
     return view('pages.info');
     }
+    public function giaodien3()
+    {
+    return view('pages.giaodien3');
+    }
 }

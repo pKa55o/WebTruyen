@@ -29,7 +29,7 @@ Route::get('/manga', [IndexController::class, 'manga']) -> name('manga');
 Route::get('/manhwa', [IndexController::class, 'manhwa']) -> name('manhwa');
 Route::get('/manhua', [IndexController::class, 'manhua']) -> name('manhua');
 Route::get('/search', [IndexController::class, 'search']) -> name('search');
-
+Route::get('/maynoigico', [IndexController::class, 'giaodien3']) -> name('giaodien3');
 //admin route
 Route::middleware(['auth', 'admin'])->group(function () {
     //giao diện admin
