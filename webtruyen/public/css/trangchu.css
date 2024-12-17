@@ -243,6 +243,140 @@ nav {
     background-color: #483d8b;
     color: #fff;
 }
+
+.xephang {
+    width: 350px;
+}
+
+.border-xephang {
+    width: 100%;
+    border: 1px solid #483d8b;
+    margin-top: 50px;
+}
+
+.title-xephang {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #483d8b;
+}
+
+.title-xephang span {
+    font-size: 32px;
+    color: #483d8b;
+    font-weight: bold;
+}
+
+.type-xephang {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #483d8b;
+}
+
+.type-xephang button {
+    height: 100%;
+    width: 116px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    color: #483d8b;
+}
+
+.type-xephang button.selected {
+    color: red;
+    background-color: rgba(0, 0, 0, 0.121);
+}
+
+#topDay {
+    display: flex;
+    flex-direction: column;
+}
+
+#topWeek {
+    display: none;
+    flex-direction: column;
+}
+
+#topMonth {
+    display: none;
+    flex-direction: column;
+}
+
+.list-xephang {
+    width: 100%;
+}
+
+.topContent {
+    width: 100%;
+}
+
+.truyen-ranking {
+    width: 100%;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    border: 1px solid #473d8b57;
+}
+
+.ranking {
+    width: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ranking span {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.anhtruyenthem {
+    width: 50px;
+    height: 50px;
+}
+
+.anhtruyenthem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.thongtintruyenthem {
+    width: 200px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+#tentruyen {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.small-thongtin {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+}
+
+.small-thongtin a {
+    text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
     .slider {
         height: 400px;

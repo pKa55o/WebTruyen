@@ -90,3 +90,22 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+function showContent(id) {
+    // Ẩn tất cả nội dung
+    const contents = document.querySelectorAll('.topContent');
+    contents.forEach(content => {
+      content.style.display = 'none';
+    });
+  
+    // Hiển thị nội dung được chọn
+    document.getElementById(id).style.display = 'block';
+}
+
+const buttons = document.querySelectorAll('.type-xephang button');
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    buttons.forEach(btn => btn.classList.remove('selected'));
+    button.classList.add('selected');
+  });
+});

@@ -329,3 +329,7 @@ nav {
 #menutheodoi i {
     font-size: 16px;
 }
+
+footer {
+    display: none;
+}
