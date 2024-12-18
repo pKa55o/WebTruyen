@@ -7,24 +7,26 @@
 <div class="container">
     <h1>Thêm Chapter Mới cho Truyện: {{ $truyen->ten_truyen }}</h1>
 
-    <form action="{{ route('chapter.store', $truyen->id) }}" method="POST" enctype="multipart/form-data">
+    <!-- Form gửi dữ liệu -->
+    <form action="{{ route('chapter.create_store', ['truyen_id' => $truyen->id]) }}" method="POST"
+        enctype="multipart/form-data">
         @csrf
-        <!-- số chap -->
+        <!-- Số Chapter -->
         <div class="form-group">
             <label for="chapter_number">Chapter :</label>
             <input type="number" name="chapter_number" id="chapter_number" class="form-control" required>
         </div>
 
-        <!-- tên chap -->
+        <!-- Tên Chapter -->
         <div class="form-group">
             <label for="ten_chapter">Tên Chapter:</label>
             <input type="text" name="ten_chapter" id="ten_chapter" class="form-control" required>
         </div>
 
-        <!-- ndung truyện-->
+        <!-- Nội dung -->
         <div class="form-group">
-            <label for="content">Nội dung (Ảnh hoặc File Zip):</label>
-            <input type="file" name="content" id="content" class="form-control-file" accept=".jpg,.jpeg,.png,.zip"
+            <label for="content">Nội dung (File ZIP):</label>
+            <input type="file" name="content" id="content" class="form-control-file" accept=".zip, .rar, .jpg, .png"
                 required>
         </div>
 

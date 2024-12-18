@@ -10,17 +10,13 @@ class Truyen extends Model
     use HasFactory;
     public $timestamps = false;
 
-    protected $table = 'truyen'; // Tên bảng trong database
-
-    /**
-     * Các cột có thể điền giá trị (mass assignable).
-     */
+    protected $table = 'truyen'; // Tên bảng trong db
     protected $fillable = [
-        'ten_truyen',   // Tên truyện
-        'tac_gia',      // Tác giả
-        'trang_thai',   // Trạng thái
-        'mo_ta',        // Mô tả
-        'thumbnail',    // Đường dẫn ảnh thumbnail
+        'ten_truyen',
+        'tac_gia',   
+        'trang_thai',
+        'mo_ta',    
+        'thumbnail',
     ];
 
     /**

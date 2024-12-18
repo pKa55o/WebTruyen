@@ -13,9 +13,10 @@ class Chapter extends Model
     protected $fillable = [
         'truyen_id',        // Khóa ngoại đến bảng truyen
         'chapter_number',   // Số thứ tự chương
-        'title',            // Tên chương
+        'ten_chapter',            // Tên chương
         'content',          // Nội dung chương
     ];
+    public $timestamps = false; // Bỏ timestamps
     public function truyen()
     {
         return $this->belongsTo(Truyen::class); // Một chương thuộc về một truyện

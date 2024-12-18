@@ -69,7 +69,7 @@
     <nav>
         <div class="big-navbar">
             <div class="title-menu">
-                <a href=""><i class="fa-solid fa-house"></i></a>
+                <a href="{{route('homepage')}}"><i class="fa-solid fa-house"></i></a>
             </div>
         </div>
         <div class="big-navbar">
