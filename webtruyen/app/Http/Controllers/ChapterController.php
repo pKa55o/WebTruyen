@@ -102,69 +102,44 @@ public function store(Request $request, $truyen_id)
 
 public function processRar($content)
 {
-    // Đường dẫn cụ thể tới unrar
+    // path unrar trên máy, nếu ai đó xài thì nhớ tải unrarw64 về, link vào path sau đó đổi cái path này
     $unrarPath = 'E:\ITStuff\Laragon\laragon\bin\unrar.exe';
     // Tạo file tạm để lưu dữ liệu byte thành file RAR
     $tempRarPath = tempnam(sys_get_temp_dir(), 'rar');
     file_put_contents($tempRarPath, $content);
 
-    // Tạo thư mục tạm để lưu trữ nội dung giải nén
+    // dir giải nén
     $outputDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('rar_');
     if (!mkdir($outputDir, 0777, true)) {
         return [
             'images' => [],
-            'status' => 'Không thể tạo thư mục tạm để giải nén file RAR.',
+            'status' => 'lỗi dir',
         ];
     }
 
-    // Giải nén file RAR
+    // giải nén
     $command = escapeshellcmd("\"$unrarPath\" x -y \"$tempRarPath\" \"$outputDir\"");
     $output = [];
     $returnCode = 0;
     exec($command, $output, $returnCode);
-
-    // Log thông tin để kiểm tra lỗi
-    error_log("Command executed: $command");
-    error_log("Command output: " . implode("\n", $output));
-    error_log("Return code: $returnCode");
-
+    //lấy ảnh
     $images = [];
     if ($returnCode === 0) { // Kiểm tra nếu lệnh unrar chạy thành công
         foreach (glob($outputDir . '/*.{jpg,jpeg,png}', GLOB_BRACE) as $file) {
             $images[] = 'data:image/' . pathinfo($file, PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($file));
         }
-    } else {
-        // Dọn dẹp nếu giải nén thất bại
-        unlink($tempRarPath);
-        array_map('unlink', glob($outputDir . '/*'));
-        rmdir($outputDir);
-
-        return [
-            'images' => [],
-            'status' => 'Không thể giải nén file RAR hoặc file không hợp lệ.',
-        ];
     }
 
-    // Dọn dẹp file tạm
+    // cleanning
     unlink($tempRarPath);
     array_map('unlink', glob($outputDir . '/*'));
     rmdir($outputDir);
-
-    // Trả về kết quả
-    $status = !empty($images) ? 'Đã giải nén thành công file RAR' : 'Không tìm thấy hình ảnh trong file RAR';
-    return [
-        'images' => $images,
-        'status' => $status,
-    ];
 }
 
 public function show($chapterId)
 {
     $chapter = Chapter::findOrFail($chapterId);
-
-    // Kiểm tra nếu quan hệ `truyen` tồn tại
     $truyen = $chapter->truyen ?? null;
-    // Xử lý file RAR
     $result = $this->processRar($chapter->content);
 
     return view('admin.chapter.view', [
