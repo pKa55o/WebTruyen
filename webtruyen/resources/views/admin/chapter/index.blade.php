@@ -21,12 +21,10 @@
                     <!-- Thông tin truyện -->
                     <p><strong>Tác giả:</strong> {{ $truyen->tac_gia ?? 'Không rõ' }}</p>
                     <p><strong>Trạng thái:</strong> {{ $truyen->trang_thai }}</p>
-                    <p><strong>ID:</strong> {{ $truyen->id }}</p>
                     <p><strong>Mô tả:</strong> {{ $truyen->mo_ta }}</p>
                     <p><strong>Thumbnail:</strong></p>
                     <img src="{{ asset('storage/' . $truyen->thumbnail) }}" alt="Thumbnail" style="max-width: 100px;">
                     <hr>
-
                     <!-- Danh sách chương -->
                     <h5>Danh Sách Chương</h5>
                     @if($chapters->isEmpty())
@@ -37,13 +35,12 @@
                         <li class="list-group-item">
                             <p><strong>Chapter:</strong> {{ $chapter->chapter_number }}</p>
                             <p><strong>Tên Chapter:</strong> {{ $chapter->ten_chapter }}</p>
-                            <a href="{{ route('chapter.view', $chapter->id) }}" class="btn btn-primary mt-3">Xem
-                                Chapter</a>
+                            <!-- Nút Xem Chapter -->
+                            <a href="{{ route('chapter.show', ['truyen_id' => $truyen->id, 'chapter_id' => $chapter->id, 'chapter' => $chapter]) }}"
+                                class="btn btn-primary mt-3">Xem Chapter</a>
                             <!-- Nút Cập Nhật -->
                             <a href="{{ route('chapter.edit', ['truyen_id' => $truyen->id, 'chapter_id' => $chapter->id, 'chapter' => $chapter]) }}"
-                                class="btn btn-warning mt-3">Cập
-                                nhật</a>
-
+                                class="btn btn-warning mt-3">Cập nhật</a>
                             <!-- Form Xóa Chapter -->
                             <form action="{{ route('chapter.destroy', $chapter->id) }}" method="POST"
                                 style="display: inline-block;">

@@ -44,15 +44,14 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/truyen/{truyen_id}/chapters/', [ChapterController::class, 'index'])->name('chapter.list');
     Route::get('/admin/truyen/{truyen_id}/chapters/create', [ChapterController::class, 'create'])->name('chapter.create_chapter');
     Route::post('/admin/truyen/{truyen_id}/chapters', [ChapterController::class, 'store'])->name('chapter.create_store');
-    // Route::get('/admin/truyen/{truyen_id}/chapters/{chapter_id}/edit', [ChapterController::class, 'edit'])
-    // ->name('chapter.edit');
     Route::get('/admin/truyen/{truyen_id}/chapters/{chapter_id}/edit', [ChapterController::class, 'edit'])
     ->name('chapter.edit');
-
     Route::put('/admin/truyen/{truyen_id}/chapters/{chapter_id}', [ChapterController::class, 'update'])
     ->name('chapter.chapter_update'); 
     Route::delete('/admin/truyen/{truyen_id}/chapters/{chapter_id}', [ChapterController::class, 'destroy'])->name('chapter.destroy');
-    Route::get('/chapter/{id}/view', [ChapterController::class, 'view'])->name('chapter.view');
+    // Route::get('/admin/truyen/{truyen_id}/chapters/{chapter_id}/view', [ChapterController::class, 'show'])
+    // ->name('chapter.show');
+    Route::get('/chapter/{chapter_id}/view', [ChapterController::class, 'show'])->name('chapter.show');
 
 });
 

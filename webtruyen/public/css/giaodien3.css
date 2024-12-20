@@ -214,7 +214,8 @@ nav {
     font-size: 24px;
 }
 
-#buttonrollback, #buttonturnup {
+#buttonrollback,
+#buttonturnup {
     width: 30px;
     height: 30px;
     background-color: #473d8bd9;
@@ -332,4 +333,16 @@ nav {
 
 footer {
     display: none;
+}
+
+.notification {
+    color: #fff; /* Màu chữ */
+    background-color: #dc3545; /* Màu nền đỏ */
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0;
+    border: 2px solid #bd2130;
 }

@@ -7,6 +7,7 @@ use App\Models\Chapter;
 use App\Models\Truyen;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use RarArchive\RarArchive;
 
 class ChapterController extends Controller
 {
@@ -52,34 +53,16 @@ public function store(Request $request, $truyen_id)
     return redirect()->route('chapter.list', $truyen_id)
                      ->with('success', 'Chapter đã được thêm thành công!');
 }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit($id)
     {
-        // Tìm Chapter cần chỉnh sửa
         $chapter = Chapter::findOrFail($id);
-    
-        // Lấy thông tin truyện tương ứng với Chapter
         $truyen = Truyen::findOrFail($chapter->truyen_id);
-    
-        // Trả về view chỉnh sửa Chapter
         return view('admin.chapter.edit', compact('chapter', 'truyen'));
     }
     
 
-    /**
-     * Update the specified resource in storage.
-     */
+
+    
     public function update(Request $request, $truyen_id, $chapter_id)
 {
     $chapter = Chapter::where('id', $chapter_id)
@@ -107,48 +90,89 @@ public function store(Request $request, $truyen_id)
         return redirect()->route('chapter.list', ['truyen_id' => $truyen_id])
                          ->with('success', 'Chapter đã được cập nhật thành công!');
     }    
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
 {
-    // Tìm Chapter cần xóa
     $chapter = Chapter::findOrFail($id);
-
-    // Xóa Chapter
     $chapter->delete();
-
-    // Chuyển hướng về danh sách Chapter với thông báo thành công
     return redirect()->route('chapter.list', $chapter->truyen_id)
                      ->with('success', 'Chapter đã được xóa thành công!');
 }
-public function view($id)
+
+// ============================ Xử Lí Hình Ảnh ============================
+
+public function processRar($content)
 {
-    // Tìm Chapter theo ID
-    $chapter = Chapter::findOrFail($id);
+    // Đường dẫn cụ thể tới unrar
+    $unrarPath = 'E:\ITStuff\Laragon\laragon\bin\unrar.exe';
+    // Tạo file tạm để lưu dữ liệu byte thành file RAR
+    $tempRarPath = tempnam(sys_get_temp_dir(), 'rar');
+    file_put_contents($tempRarPath, $content);
 
-    // Lấy thông tin truyện tương ứng
-    $truyen = Truyen::findOrFail($chapter->truyen_id);
-
-    // Giải nén nội dung từ cột `content` nếu lưu dưới dạng file ZIP
-    $images = [];
-    if ($chapter->content) {
-        $zipPath = storage_path('app/public/temp.zip');
-        file_put_contents($zipPath, $chapter->content);
-
-        $zip = new \ZipArchive;
-        if ($zip->open($zipPath) === TRUE) {
-            for ($i = 0; $i < $zip->numFiles; $i++) {
-                $fileName = $zip->getNameIndex($i);
-                $images[] = 'data:image/jpeg;base64,' . base64_encode($zip->getFromName($fileName));
-            }
-            $zip->close();
-            unlink($zipPath);
-        }
+    // Tạo thư mục tạm để lưu trữ nội dung giải nén
+    $outputDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('rar_');
+    if (!mkdir($outputDir, 0777, true)) {
+        return [
+            'images' => [],
+            'status' => 'Không thể tạo thư mục tạm để giải nén file RAR.',
+        ];
     }
 
-    // Trả về view hiển thị chapter
-    return view('admin.chapter.view', compact('chapter', 'truyen', 'images'));
+    // Giải nén file RAR
+    $command = escapeshellcmd("\"$unrarPath\" x -y \"$tempRarPath\" \"$outputDir\"");
+    $output = [];
+    $returnCode = 0;
+    exec($command, $output, $returnCode);
+
+    // Log thông tin để kiểm tra lỗi
+    error_log("Command executed: $command");
+    error_log("Command output: " . implode("\n", $output));
+    error_log("Return code: $returnCode");
+
+    $images = [];
+    if ($returnCode === 0) { // Kiểm tra nếu lệnh unrar chạy thành công
+        foreach (glob($outputDir . '/*.{jpg,jpeg,png}', GLOB_BRACE) as $file) {
+            $images[] = 'data:image/' . pathinfo($file, PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($file));
+        }
+    } else {
+        // Dọn dẹp nếu giải nén thất bại
+        unlink($tempRarPath);
+        array_map('unlink', glob($outputDir . '/*'));
+        rmdir($outputDir);
+
+        return [
+            'images' => [],
+            'status' => 'Không thể giải nén file RAR hoặc file không hợp lệ.',
+        ];
+    }
+
+    // Dọn dẹp file tạm
+    unlink($tempRarPath);
+    array_map('unlink', glob($outputDir . '/*'));
+    rmdir($outputDir);
+
+    // Trả về kết quả
+    $status = !empty($images) ? 'Đã giải nén thành công file RAR' : 'Không tìm thấy hình ảnh trong file RAR';
+    return [
+        'images' => $images,
+        'status' => $status,
+    ];
+}
+
+public function show($chapterId)
+{
+    $chapter = Chapter::findOrFail($chapterId);
+
+    // Kiểm tra nếu quan hệ `truyen` tồn tại
+    $truyen = $chapter->truyen ?? null;
+    // Xử lý file RAR
+    $result = $this->processRar($chapter->content);
+
+    return view('admin.chapter.view', [
+        'chapter' => $chapter,
+        'truyen' => $truyen,
+        'images' => $result['images'],
+        'status' => $result['status'],
+    ]);
 }
 
 }

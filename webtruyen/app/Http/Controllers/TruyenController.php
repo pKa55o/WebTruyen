@@ -37,9 +37,9 @@ class TruyenController extends Controller
         'ten_truyen' => 'required|string|max:255',
         'tac_gia' => 'required|string|max:255',
         'trang_thai' => 'required|string',
-        'the_loai' => 'required|array|min:1', // Thể loại phải là mảng
+        'the_loai' => 'required|array|min:1',
         'mo_ta' => 'required|string',
-        'thumbnail' => 'required|mimes:jpg,jpeg,png|max:2048', // Thumbnail giới hạn 2MB
+        'thumbnail' => 'required|mimes:jpg,jpeg,png|max:2048', //2mb
     ]);
 
     //public/storage/thumbnails
