@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Chapter;
 use App\Models\Truyen;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use RarArchive\RarArchive;
+use ZipArchive;
 
 class ChapterController extends Controller
 {
@@ -21,14 +19,14 @@ class ChapterController extends Controller
     return view('admin.chapter.index', compact('truyen', 'chapters'));
 }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create($truyen_id)
+// ============================ Create ============================
+     public function create($truyen_id)
 {
     $truyen = Truyen::findOrFail($truyen_id);
     return view('admin.chapter.create', compact('truyen'));
 }
+
+// ============================ Store ============================
 public function store(Request $request, $truyen_id)
 {
     // Validate dữ liệu đầu vào
@@ -53,6 +51,8 @@ public function store(Request $request, $truyen_id)
     return redirect()->route('chapter.list', $truyen_id)
                      ->with('success', 'Chapter đã được thêm thành công!');
 }
+
+// ============================ Edit ============================
     public function edit($id)
     {
         $chapter = Chapter::findOrFail($id);
@@ -61,8 +61,7 @@ public function store(Request $request, $truyen_id)
     }
     
 
-
-    
+    // ============================ Update ============================
     public function update(Request $request, $truyen_id, $chapter_id)
 {
     $chapter = Chapter::where('id', $chapter_id)
@@ -98,50 +97,69 @@ public function store(Request $request, $truyen_id)
                      ->with('success', 'Chapter đã được xóa thành công!');
 }
 
+
+
 // ============================ Xử Lí Hình Ảnh ============================
 
-public function processRar($content)
+public function processZip($content, $chapterId)
 {
-    // path unrar trên máy, nếu ai đó xài thì nhớ tải unrarw64 về, link vào path sau đó đổi cái path này
-    $unrarPath = 'E:\ITStuff\Laragon\laragon\bin\unrar.exe';
-    // Tạo file tạm để lưu dữ liệu byte thành file RAR
-    $tempRarPath = tempnam(sys_get_temp_dir(), 'rar');
-    file_put_contents($tempRarPath, $content);
-
-    // dir giải nén
-    $outputDir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('rar_');
-    if (!mkdir($outputDir, 0777, true)) {
-        return [
-            'images' => [],
-            'status' => 'lỗi dir',
-        ];
+    // lấy path temp của máy có sẵn,    cái này là để phân biệt các folder với /, đặt tên file với prefix là zip???.zip
+    $tempZipPath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . uniqid('zip_') . '.zip';
+    //tạo dir để chứa file ảnh sau khi unzip
+    $outputDir = 'uploads/chapters/' . $chapterId;
+    //đảm bảo có đủ quyền RRW
+    if (!is_dir($outputDir)) {
+    mkdir($outputDir, 0777, true);
     }
+    // tạo 1 file tại $tempZip với ndung là content
+    file_put_contents($tempZipPath, $content);
 
-    // giải nén
-    $command = escapeshellcmd("\"$unrarPath\" x -y \"$tempRarPath\" \"$outputDir\"");
-    $output = [];
-    $returnCode = 0;
-    exec($command, $output, $returnCode);
-    //lấy ảnh
+    $zip = new ZipArchive;
+    //tạo mảng chứa ảnh 
     $images = [];
-    if ($returnCode === 0) { // Kiểm tra nếu lệnh unrar chạy thành công
-        foreach (glob($outputDir . '/*.{jpg,jpeg,png}', GLOB_BRACE) as $file) {
-            $images[] = 'data:image/' . pathinfo($file, PATHINFO_EXTENSION) . ';base64,' . base64_encode(file_get_contents($file));
-        }
-    }
+    $status = '';
 
-    // cleanning
-    unlink($tempRarPath);
-    array_map('unlink', glob($outputDir . '/*'));
-    rmdir($outputDir);
+    if ($zip->open($tempZipPath) === TRUE) {
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $fileName = $zip->getNameIndex($i);
+    // lấy tiêu chuẩn file đúng là phần phía sau dấu . của tên file phải là jpg hoặc png và đem so sánh với tên file được duyệt qua
+            if (preg_match('/\.(jpg|png)$/i', $fileName)) {
+                $stream = $zip->getStream($fileName);
+                // check nếu stream có dữ liệu
+                if ($stream) {
+                    //path để lưu ảnh
+                    $imagePath = $outputDir . '/' . basename($fileName);
+                    //lấy ra dữ liệu của stream và lưu vào path trên (ghi đè)
+                    file_put_contents($imagePath, stream_get_contents($stream));
+                    //hàm asset tạo 1 URL dẫn đến dir tĩnh cụ thể là public
+                    //vd kq là /uploads/chapter/chapterId/img1.jpg thì tren web sẽ là webtruyen.test/uploads/...
+                    $images[] = asset('uploads/chapters/' . $chapterId . '/' . basename($fileName));
+                }
+            }
+        }
+        $zip->close();
+        if (!empty($images)) {
+            $status = 'có zip';
+        } else {
+            $status = 'file rỗng';
+        }
+    } else {
+        $status = 'lỗi file';
+    }
+    return [
+        'images' => $images,
+        'status' => $status,
+    ];
 }
 
 public function show($chapterId)
 {
     $chapter = Chapter::findOrFail($chapterId);
-    $truyen = $chapter->truyen ?? null;
-    $result = $this->processRar($chapter->content);
-
+    //lấy ra tên truyện thông qua chapter 
+    if ($chapter->truyen) {
+        $truyen = $chapter->truyen;
+    }
+    $result = $this->processZip($chapter->content, $chapterId);
     return view('admin.chapter.view', [
         'chapter' => $chapter,
         'truyen' => $truyen,

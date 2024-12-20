@@ -46,8 +46,8 @@
 
         <!-- Nội dung (file mới nếu có) -->
         <div class="form-group">
-            <label for="content">Cập Nhật Nội Dung (ZIP, RAR, PNG, JPG):</label>
-            <input type="file" name="content" id="content" class="form-control-file" accept=".zip,.rar,.png,.jpg">
+            <label for="content">Cập Nhật Nội Dung (Chỉ Chấp Nhận File ZIP):</label>
+            <input type="file" name="content" id="content" class="form-control-file" accept=".zip">
             <small class="text-muted">Để trống nếu không muốn thay đổi file.</small>
         </div>
 

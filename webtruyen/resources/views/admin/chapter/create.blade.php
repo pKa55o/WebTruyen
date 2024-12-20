@@ -25,9 +25,8 @@
 
         <!-- Nội dung -->
         <div class="form-group">
-            <label for="content">Nội dung (File ZIP):</label>
-            <input type="file" name="content" id="content" class="form-control-file" accept=".zip, .rar, .jpg, .png"
-                required>
+            <label for="content">Nội dung (Chỉ Chấp Nhận File ZIP):</label>
+            <input type="file" name="content" id="content" class="form-control-file" accept=".zip" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Thêm Chapter</button>

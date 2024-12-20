@@ -49,15 +49,13 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/admin/truyen/{truyen_id}/chapters/{chapter_id}', [ChapterController::class, 'update'])
     ->name('chapter.chapter_update'); 
     Route::delete('/admin/truyen/{truyen_id}/chapters/{chapter_id}', [ChapterController::class, 'destroy'])->name('chapter.destroy');
-    // Route::get('/admin/truyen/{truyen_id}/chapters/{chapter_id}/view', [ChapterController::class, 'show'])
-    // ->name('chapter.show');
     Route::get('/chapter/{chapter_id}/view', [ChapterController::class, 'show'])->name('chapter.show');
 
 });
 
 //login route
 Auth::routes();
-
+//??
 Route::resource('/truyen', TruyenController::class);
 Route::resource('/chapter', ChapterController::class);
 Route::get('/home', [IndexController::class, 'index']) -> name('home');

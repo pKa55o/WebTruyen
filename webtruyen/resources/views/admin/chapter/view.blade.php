@@ -3,18 +3,6 @@
 @section('content')
 
 <link rel="stylesheet" href="/css/giaodien3.css">
-<div class="truyentranh">
-    @if(!empty($images))
-    @foreach($images as $image)
-    <div class="page-chapter">
-        <img src="{{ $image }}" alt="Chapter Image" style="width: 100%; max-height: 100%;">
-    </div>
-    @endforeach
-    @else
-    <p class="notification">{{ $status }}</p>
-    @endif
-</div>
-
 <div class="container2">
     <div class="maincontent">
         <div class="thongtinchinh">
@@ -54,11 +42,11 @@
         </div>
         <div class="truyentranh">
             @if(!empty($images))
-            @foreach($images as $image)
-            <div class="page-chapter">
-                <img src="{{ $image }}" alt="Chapter Image" style="width: 100%; max-height: 100%;">
-            </div>
-            @endforeach
+                @foreach($images as $image)
+                <div class="page-chapter">
+                    <img src="{{ asset($image) }}" alt="Chapter Image" style="width: 100%; max-height: 100%;">
+                </div>
+                @endforeach
             @endif
         </div>
     </div>
