@@ -1,2 +1,1 @@
-this is readme file, nothing special to find
-   
+vẫn còn hạn chế đối với các file upload chapter khác ngoài zip
