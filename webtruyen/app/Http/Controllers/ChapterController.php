@@ -9,9 +9,6 @@ use ZipArchive;
 
 class ChapterController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index($truyenId)
 {
     $truyen = Truyen::findOrFail($truyenId);
@@ -26,70 +23,16 @@ class ChapterController extends Controller
     return view('admin.chapter.create', compact('truyen'));
 }
 
-// ============================ Store ============================
-public function store(Request $request, $truyen_id)
+// ============================ Edit ============================
+public function edit($id)
 {
-    // Validate dữ liệu đầu vào
-    $validated = $request->validate([
-        'chapter_number' => 'required|integer',
-        'ten_chapter'    => 'required|string|max:255',
-        'content'        => 'required|file|mimes:zip,rar,png,jpg|max:67108864', // Tối đa 64MB
-    ]);
-
-    // Đọc file nhị phân từ input
-    $fileContent = file_get_contents($request->file('content')->getRealPath());
-
-    // Lưu dữ liệu vào database
-    Chapter::create([
-        'truyen_id'      => $truyen_id,
-        'chapter_number' => $validated['chapter_number'],
-        'ten_chapter'    => $validated['ten_chapter'],
-        'content'        => $fileContent,
-    ]);
-
-    //redirect
-    return redirect()->route('chapter.list', $truyen_id)
-                     ->with('success', 'Chapter đã được thêm thành công!');
+    $chapter = Chapter::findOrFail($id);
+    $truyen = Truyen::findOrFail($chapter->truyen_id);
+    return view('admin.chapter.edit', compact('chapter', 'truyen'));
 }
 
-// ============================ Edit ============================
-    public function edit($id)
-    {
-        $chapter = Chapter::findOrFail($id);
-        $truyen = Truyen::findOrFail($chapter->truyen_id);
-        return view('admin.chapter.edit', compact('chapter', 'truyen'));
-    }
-    
-
-    // ============================ Update ============================
-    public function update(Request $request, $truyen_id, $chapter_id)
-{
-    $chapter = Chapter::where('id', $chapter_id)
-                      ->where('truyen_id', $truyen_id)
-                      ->firstOrFail();
-    
-        // Validate dữ liệu
-        $validated = $request->validate([
-            'chapter_number' => 'required|integer',
-            'ten_chapter'    => 'required|string|max:255',
-            'content'        => 'nullable|file|mimes:zip,rar,png,jpg|max:67108864',
-        ]);
-    
-        // Cập nhật dữ liệu
-        $chapter->chapter_number = $validated['chapter_number'];
-        $chapter->ten_chapter = $validated['ten_chapter'];
-    
-        // Nếu có file mới, cập nhật
-        if ($request->hasFile('content')) {
-            $chapter->content = file_get_contents($request->file('content')->getRealPath());
-        }
-    
-        $chapter->save();
-    
-        return redirect()->route('chapter.list', ['truyen_id' => $truyen_id])
-                         ->with('success', 'Chapter đã được cập nhật thành công!');
-    }    
-    public function destroy($id)
+// ============================ Destroy ============================
+public function destroy($id)
 {
     $chapter = Chapter::findOrFail($id);
     $chapter->delete();
@@ -97,6 +40,51 @@ public function store(Request $request, $truyen_id)
                      ->with('success', 'Chapter đã được xóa thành công!');
 }
 
+    // ============================ Store ============================
+public function store(Request $request, $truyen_id)
+{
+    //validating (đk)
+    $validated = $request->validate([
+        'chapter_number' => 'required|integer',
+        'ten_chapter'    => 'required|string|max:255',
+        'content'        => 'required|file|mimes:zip,rar,png,jpg|max:67108864', //64mb
+    ]);
+    //đọc input từ form name content, khi này file được tải lên sẽ ở dir temp của máy và sẽ lưu luôn vào fileContent dưới dạng byte
+    $fileContent = file_get_contents($request->file('content')->getRealPath());
+    //tạo 1 kiểu chapter đẻ lưu vào db, create([]) có công dụng tạo 1 row mới trong db chapter
+    Chapter::create([
+        'truyen_id'      => $truyen_id,
+        'chapter_number' => $validated['chapter_number'],
+        'ten_chapter'    => $validated['ten_chapter'],
+        'content'        => $fileContent,
+    ]);
+    return redirect()->route('chapter.list', $truyen_id)
+                     ->with('success', 'Chapter đã được thêm thành công!');
+}
+
+
+    // ============================ Update ============================
+    public function update(Request $request, $truyen_id, $chapter_id)
+{
+    $chapter = Chapter::where('id', $chapter_id)
+                      ->where('truyen_id', $truyen_id)
+                      ->firstOrFail();
+        //validating
+        $validated = $request->validate([
+            'chapter_number' => 'required|integer',
+            'ten_chapter'    => 'required|string|max:255',
+            'content'        => 'nullable|file|mimes:zip|max:67108864',
+        ]);
+        //update
+        $chapter->chapter_number = $validated['chapter_number'];
+        $chapter->ten_chapter = $validated['ten_chapter'];
+        if ($request->hasFile('content')) {
+            $chapter->content = file_get_contents($request->file('content')->getRealPath());
+        }
+        $chapter->save();
+        return redirect()->route('chapter.list', ['truyen_id' => $truyen_id])
+                         ->with('success', 'Chapter đã được cập nhật thành công!');
+    }    
 
 
 // ============================ Xử Lí Hình Ảnh ============================
