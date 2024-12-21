@@ -12,7 +12,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Thông Tin Truyện: ') }} {{ $truyen->ten_truyen }}</div>
-
                 <div class="card-body">
                     <!-- Thông tin truyện -->
                     <p><strong>Tác giả:</strong> {{ $truyen->tac_gia ?? 'Không rõ' }}</p>
@@ -49,7 +48,6 @@
                         @endforeach
                     </ul>
                     @endif
-
                     <!-- Nút Thêm Chapter -->
                     <a href="{{ route('chapter.create_chapter', ['truyen_id' => $truyen->id]) }}"
                         class="btn btn-primary mt-3">Thêm Chapter Mới</a>

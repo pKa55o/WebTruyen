@@ -24,12 +24,12 @@ enum RouteName: string {
 
 //user route
 Route::get('/', [IndexController::class, 'index']) -> name('homepage');
-Route::get('/truyeninfo', [IndexController::class, 'in4truyen']) -> name('infotruyen');
+Route::get('/truyeninfo/{truyen_id}', [IndexController::class, 'in4truyen']) -> name('infotruyen');
 Route::get('/manga', [IndexController::class, 'manga']) -> name('manga');
 Route::get('/manhwa', [IndexController::class, 'manhwa']) -> name('manhwa');
 Route::get('/manhua', [IndexController::class, 'manhua']) -> name('manhua');
 Route::get('/search', [IndexController::class, 'search']) -> name('search');
-Route::get('/maynoigico', [IndexController::class, 'giaodien3']) -> name('giaodien3');
+Route::get('/reading', [IndexController::class, 'giaodien3']) -> name('read');
 //admin route
 Route::middleware(['auth', 'admin'])->group(function () {
     //giao diện admin

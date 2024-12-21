@@ -27,18 +27,15 @@
         </div>
         <div id="auth-container">
             @guest
-            <!-- Hiển thị nút Login nếu chưa đăng nhập -->
             <a href="{{ route('login') }}" class="auth-link">
                 Đăng nhập
             </a>
             @if (Route::has('register'))
-            <!-- Hiển thị nút Register nếu chưa đăng nhập -->
             <a href="{{ route('register') }}" class="auth-link">
                 Đăng ký
             </a>
             @endif
             @else
-            <!-- Hiển thị dropdown nếu đã đăng nhập -->
             <div class="dropdown">
                 <a class="auth-link dropdown-toggle" href="#" role="button" onclick="toggleDropdown(event)">
                     {{ Auth::user()->name }}

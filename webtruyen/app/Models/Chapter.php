@@ -11,14 +11,13 @@ class Chapter extends Model
     protected $table = 'chapters';
 
     protected $fillable = [
-        'truyen_id',        // Khóa ngoại đến bảng truyen
-        'chapter_number',   // Số thứ tự chương
-        'ten_chapter',            // Tên chương
-        'content',          // Nội dung chương
+        'truyen_id',
+        'chapter_number',
+        'ten_chapter',
+        'content',
     ];
-    public $timestamps = false; // Bỏ timestamps
     public function truyen()
     {
-        return $this->belongsTo(Truyen::class); // Một chương thuộc về một truyện
+        return $this->belongsTo(Truyen::class);
     }
 }
