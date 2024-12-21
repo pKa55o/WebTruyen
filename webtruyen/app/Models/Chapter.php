@@ -16,7 +16,7 @@ class Chapter extends Model
         'ten_chapter',            // Tên chương
         'content',          // Nội dung chương
     ];
-    public $timestamps = false; // Bỏ timestamps
+    // public $timestamps = false;
     public function truyen()
     {
         return $this->belongsTo(Truyen::class); // Một chương thuộc về một truyện

@@ -42,11 +42,11 @@
         </div>
         <div class="truyentranh">
             @if(!empty($images))
-                @foreach($images as $image)
-                <div class="page-chapter">
-                    <img src="{{ asset($image) }}" alt="Chapter Image" style="width: 100%; max-height: 100%;">
-                </div>
-                @endforeach
+            @foreach($images as $image)
+            <div class="page-chapter">
+                <img src="{{ asset($image) }}" alt="Chapter Image" style="width: 100%; max-height: 100%;">
+            </div>
+            @endforeach
             @endif
         </div>
     </div>

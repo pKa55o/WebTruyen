@@ -5,6 +5,10 @@
 <!-- script -->
 <script src="{{asset('js/trangchu.js')}}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<?php 
+use App\Models\Truyen;
+$truyens = Truyen::all();
+?>
 
 <head>
     <meta charset="UTF-8" />
