@@ -1,9 +1,6 @@
 @extends('admin.layout')
 
-@section('content')
-
-@include('admin.nav')
-<!-- thông báo thêm truyện thành công -->
+@section('content-for')
 @if (session('success'))
 <div class="alert alert-success">
     {{ session('success') }}

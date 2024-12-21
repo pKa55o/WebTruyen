@@ -471,10 +471,11 @@ footer {
     gap: 15px;
     color: white;
 }
+
 .dropdown-menu {
     display: none;
     position: absolute;
-    background: #fff;
+    background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 4px;
     z-index: 1000;
@@ -531,16 +532,12 @@ footer {
     z-index: 999;
 }
 
-.dropdown-menu a {
+.dropdown-menu li a {
     text-decoration: none;
-    color: #fff;
+    color: black;
     font-size: 14px;
     padding: 5px 10px;
     border-radius: 3px;
-}
-
-.dropdown-menu a:hover {
-    background-color: #6b5da9;
 }
 
 .dropdown:hover .dropdown-menu {

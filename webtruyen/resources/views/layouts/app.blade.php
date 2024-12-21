@@ -98,9 +98,9 @@
                         <td><a href="">trinh thám</a></td>
                     </tr>
                     <tr>
-                        <td><a href="">manga</a></td>
-                        <td><a href="">manwha</a></td>
-                        <td><a href="">manhua</a></td>
+                        <td><a href="{{ route('manga') }}">manga</a></td>
+                        <td><a href="{{ route('manhwa') }}">manwha</a></td>
+                        <td><a href="{{ route('manhua') }}">manhua</a></td>
                         <td><a href="">anime</a></td>
                     </tr>
                     <tr>

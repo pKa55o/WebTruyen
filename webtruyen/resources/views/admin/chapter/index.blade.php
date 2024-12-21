@@ -1,16 +1,12 @@
 @extends('admin.layout')
 
-@section('content')
-
-@include('admin.nav')
-
+@section('content-for')
 <!-- Thông báo thành công -->
 @if (session('success'))
 <div class="alert alert-success">
     {{ session('success') }}
 </div>
 @endif
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -62,5 +58,4 @@
         </div>
     </div>
 </div>
-
 @endsection

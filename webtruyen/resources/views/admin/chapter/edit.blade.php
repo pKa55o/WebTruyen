@@ -1,8 +1,6 @@
 @extends('admin.layout')
 
-@section('content')
-
-@include('admin.nav')
+@section('content-for')
 
 <!-- Thông báo thành công -->
 @if (session('success'))
