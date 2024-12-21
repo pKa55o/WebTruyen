@@ -28,7 +28,7 @@
                     <!-- Danh sách chương -->
                     <h5>Danh Sách Chương</h5>
                     @if($chapters->isEmpty())
-                    <p>Hiện chưa có chương truyện nào</p>
+                    <p>lỗi mảng</p>
                     @else
                     <ul class="list-group">
                         @foreach($chapters as $chapter)
