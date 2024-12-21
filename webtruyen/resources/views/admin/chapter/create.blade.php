@@ -1,8 +1,6 @@
 @extends('admin.layout')
 
-@section('content')
-
-@include('admin.nav')
+@section('content-for')
 
 <div class="container">
     <h1>Thêm Chapter Mới cho Truyện: {{ $truyen->ten_truyen }}</h1>

@@ -29,59 +29,31 @@
                     <a href="" id="theodoi"><i class="fa fa-heart"></i><span> Theo dõi</span></a>
                 </div>
             </div>
-            <div class="truyentranh" data-chapter="0" >
-                <div class="page-chapter">
-                    <img src="imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <imgs src="/imgs/4.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
-                
+            @include('layouts.chapter')
+        </div>
+    </div>
+    <div class="comments-section">
+        <!-- Form thêm bình luận -->
+        <div class="add-comment">
+            <h3>Thêm bình luận</h3>
+            <div class="textarea-container">
+            <textarea id="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
+            <div id="emoji-toolbar">
+                <!-- Các emoji phổ biến -->
+                <span class="emoji">😊</span> <span class="emoji">😂</span>
+                <span class="emoji">😍</span> <span class="emoji">😎</span>
+                <span class="emoji">😢</span> <span class="emoji">😡</span>
+                <span class="emoji">👍</span> <span class="emoji">🎉</span>
             </div>
-            <div class="truyentranh" data-chapter="1" style="display: none;">
-            <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/0.jpg" alt="">
-                </div>
-                <div class="page-chapter">
-                    <img src="/imgs/4.jpg" alt="">
-                </div>
             </div>
+            <button id="submit-comment">Gửi</button>
+        </div>   
+        <!-- Khu vực hiển thị bình luận -->
+        <div class="comments-list">
+            <h3>Bình luận</h3>
+            <ul id="comments-container">
+            <!-- Các bình luận sẽ được thêm vào đây -->
+            </ul>
         </div>
     </div>
     <div id="progress">
@@ -105,4 +77,5 @@
         </div>
     </div>
     <script src="/js/giaodien3.js"></script>
+    <script src="/js/giaodien2.js"></script>
 @endsection

@@ -1,8 +1,6 @@
 @extends('admin.layout')
 
-@section('content')
-
-@include('admin.nav')
+@section('content-for')
 @if(session('success'))
 <div class="alert alert-success mt-3">
     {{ session('success') }}

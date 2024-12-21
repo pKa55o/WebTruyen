@@ -1,16 +1,14 @@
-<!-- header -->
 <!DOCTYPE html>
 <html lang="en">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<!-- script -->
 <script src="{{asset('js/trangchu.js')}}"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<link rel="stylesheet" href="{{ asset('/css/trangchu.css') }}" />
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebTruyen</title>
-    <link rel="stylesheet" href="{{asset('css/trangchu.css')}}" />
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -45,7 +43,7 @@
                 <a class="auth-link dropdown-toggle" href="#" role="button" onclick="toggleDropdown(event)">
                     {{ Auth::user()->name }}
                 </a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" style="background-color: white;">
                     @if (Auth::user()->role === 'admin')
                     <!-- Hiển thị Management nếu role là admin -->
                     <a class="dropdown-item" href="{{ route('admin.home') }}">Management</a>
@@ -97,9 +95,9 @@
                         <td><a href="">trinh thám</a></td>
                     </tr>
                     <tr>
-                        <td><a href="">manga</a></td>
-                        <td><a href="">manwha</a></td>
-                        <td><a href="">manhua</a></td>
+                        <td><a href="{{ route('manga') }}">manga</a></td>
+                        <td><a href="{{ route('manhwa') }}">manwha</a></td>
+                        <td><a href="{{ route('manhua') }}">manhua</a></td>
                         <td><a href="">anime</a></td>
                     </tr>
                     <tr>
