@@ -12,7 +12,10 @@ class ChapterController extends Controller
     public function index($truyenId)
 {
     $truyen = Truyen::findOrFail($truyenId);
+//lấy toàn bộ dữ liệu (chapter) từ truyenId nếu trong db có truyenId tương ứng
     $chapters = Chapter::where('truyen_id', $truyenId)->get();
+//hàm compact dùng để tạo 1 mảng, 2 biến trong hàm tương ứng với 2 trường thông tin mà nó lấy
+//tức là trong db lấy 4 nhưng chỉ tạo mảng với 2 
     return view('admin.chapter.index', compact('truyen', 'chapters'));
 }
 
