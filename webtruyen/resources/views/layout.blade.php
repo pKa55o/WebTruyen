@@ -11,7 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WebTruyen</title>
     <link rel="stylesheet" href="{{asset('css/trangchu.css')}}" />
-    <link rel="stylesheet" href="{{asset('js/trangchu.js')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,12 +31,12 @@
             @guest
             <!-- Hiển thị nút Login nếu chưa đăng nhập -->
             <a href="{{ route('login') }}" class="auth-link">
-                Login
+                Đăng nhập
             </a>
             @if (Route::has('register'))
             <!-- Hiển thị nút Register nếu chưa đăng nhập -->
             <a href="{{ route('register') }}" class="auth-link">
-                Register
+                Đăng ký
             </a>
             @endif
             @else
@@ -63,10 +62,8 @@
             </div>
             @endguest
         </div>
-
-
     </div>
-    <nav>
+    <nav class="menu-bar">
         <div class="big-navbar">
             <div class="title-menu">
                 <a href="{{route('homepage')}}"><i class="fa-solid fa-house"></i></a>

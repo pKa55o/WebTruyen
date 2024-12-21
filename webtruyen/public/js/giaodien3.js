@@ -28,3 +28,70 @@ let calcScrollValue = () => {
   
   window.onscroll = calcScrollValue;
   window.onload = calcScrollValue;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const select = document.getElementById('chapter-select');
+    const select2 = document.getElementById('chapter-select2');
+    const chapters = document.querySelectorAll('.truyentranh'); 
+    const buttonRollback = document.getElementById('buttonrollback');
+    const buttonTurnUp = document.getElementById('buttonturnup');
+    const buttonRollback2 = document.getElementById('buttonrollback2');
+    const buttonTurnUp2 = document.getElementById('buttonturnup2');
+  
+    function showChapter(chapterIndex) {
+      chapters.forEach(chapter => {
+        chapter.style.display = chapter.getAttribute('data-chapter') === chapterIndex ? 'block' : 'none';
+      });
+    }
+
+  function updateChapter(selectElement) {
+    const selectedValue = selectElement.value;
+    showChapter(selectedValue);
+  }
+  
+    buttonRollback.addEventListener('click', () => {
+      if (select.selectedIndex > 0) {
+        select.selectedIndex -= 1;
+        select2.selectedIndex = select.selectedIndex;
+        updateChapter(select);
+      }
+    });
+  
+    buttonTurnUp.addEventListener('click', () => {
+      if (select.selectedIndex < select.options.length - 1) {
+        select.selectedIndex += 1; 
+        select2.selectedIndex = select.selectedIndex;
+        updateChapter(select);
+      }
+    });
+
+    buttonRollback2.addEventListener('click', () => {
+      if (select2.selectedIndex > 0) {
+        select2.selectedIndex -= 1;
+        select.selectedIndex = select2.selectedIndex;
+        updateChapter(select2);
+      }
+    });
+  
+    buttonTurnUp2.addEventListener('click', () => {
+      if (select2.selectedIndex < select2.options.length - 1) {
+        select2.selectedIndex += 1;
+        select.selectedIndex = select2.selectedIndex;
+        updateChapter(select2);
+      }
+    });
+  
+    select.addEventListener('change', () => {
+      select2.selectedIndex = select.selectedIndex; 
+      updateChapter(select);
+    });
+  
+    select2.addEventListener('change', () => {
+      select.selectedIndex = select2.selectedIndex; 
+      updateChapter(select2);
+    });
+  
+    updateChapter(select);
+    updateChapter(select2);
+  });
+  

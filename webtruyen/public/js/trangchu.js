@@ -1,3 +1,20 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('.type-xephang');
+  
+    if (container) {
+      container.addEventListener('click', (event) => {
+        const button = event.target.closest('button');
+        if (button) {
+          // Xóa lớp "selected" khỏi tất cả các nút
+          container.querySelectorAll('button').forEach(btn => btn.classList.remove('selected'));
+          
+          // Thêm lớp "selected" vào nút được nhấn
+          button.classList.add('selected');
+        }
+      });
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const navItems = document.querySelectorAll("nav > div");
 
@@ -38,37 +55,40 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-let slider = document.querySelector(".slider .list");
-let items = document.querySelectorAll(".slider .list .item");
-let next = document.getElementById("next");
-let prev = document.getElementById("prev");
-let dots = document.querySelectorAll(".slider .dots li");
+document.addEventListener("DOMContentLoaded", function () {
+    let slider = document.querySelector(".slider .list");
+    let items = document.querySelectorAll(".slider .list .item");
+    let next = document.getElementById("next");
+    let prev = document.getElementById("prev");
+    let dots = document.querySelectorAll(".slider .dots li");
 
-let lengthItems = items.length - 1;
-let active = 0;
-next.onclick = function () {
-    active = active + 1 <= lengthItems ? active + 1 : 0;
-    reloadSlider();
-};
-prev.onclick = function () {
-    active = active - 1 >= 0 ? active - 1 : lengthItems;
-    reloadSlider();
-};
-let refreshInterval = setInterval(() => {
-    next.click();
-}, 5000);
-function reloadSlider() {
-    slider.style.left = -items[active].offsetLeft + "px";
-    //
-    let last_active_dot = document.querySelector(".slider .dots li.active");
-    last_active_dot.classList.remove("active");
-    dots[active].classList.add("active");
-
-    clearInterval(refreshInterval);
-    refreshInterval = setInterval(() => {
+    let lengthItems = items.length - 1;
+    let active = 0;
+    next.onclick = function () {
+        active = active + 1 <= lengthItems ? active + 1 : 0;
+        reloadSlider();
+    };
+    prev.onclick = function () {
+        active = active - 1 >= 0 ? active - 1 : lengthItems;
+        reloadSlider();
+    };
+    let refreshInterval = setInterval(() => {
         next.click();
     }, 5000);
-}
+    function reloadSlider() {
+        slider.style.left = -items[active].offsetLeft + "px";
+        //
+        let last_active_dot = document.querySelector(".slider .dots li.active");
+        last_active_dot.classList.remove("active");
+        dots[active].classList.add("active");
+
+        clearInterval(refreshInterval);
+        refreshInterval = setInterval(() => {
+            next.click();
+        }, 5000);
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function () {
     const dropdownToggle = document.querySelector(".dropdown-toggle");
     const dropdownMenu = document.querySelector(".dropdown-menu");
@@ -101,11 +121,3 @@ function showContent(id) {
     // Hiển thị nội dung được chọn
     document.getElementById(id).style.display = 'block';
 }
-
-const buttons = document.querySelectorAll('.type-xephang button');
-buttons.forEach(button => {
-  button.addEventListener('click', () => {
-    buttons.forEach(btn => btn.classList.remove('selected'));
-    button.classList.add('selected');
-  });
-});

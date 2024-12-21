@@ -1,85 +1,183 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!-- header -->
+<!DOCTYPE html>
+<html lang="en">
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<!-- script -->
+<script src="{{asset('js/trangchu.js')}}"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebTruyen</title>
+    <link rel="stylesheet" href="{{asset('css/trangchu.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+    <div class="container1">
+        <div class="title">
+            <span><a href="{{route('homepage')}}">TruyenTranh</a> </span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Tìm Kiếm" />
+            <button type="submit" title="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <div id="auth-container">
+            @guest
+            <!-- Hiển thị nút Login nếu chưa đăng nhập -->
+            <a href="{{ route('login') }}" class="auth-link">
+                Đăng nhập
+            </a>
+            @if (Route::has('register'))
+            <!-- Hiển thị nút Register nếu chưa đăng nhập -->
+            <a href="{{ route('register') }}" class="auth-link">
+                Đăng ký
+            </a>
+            @endif
+            @else
+            <!-- Hiển thị dropdown nếu đã đăng nhập -->
+            <div class="dropdown">
+                <a class="auth-link dropdown-toggle" href="#" role="button" onclick="toggleDropdown(event)">
+                    {{ Auth::user()->name }}
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
-
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
+                <div class="dropdown-menu">
+                    @if (Auth::user()->role === 'admin')
+                    <!-- Hiển thị Management nếu role là admin -->
+                    <a class="dropdown-item" href="{{ route('admin.home') }}">Management</a>
+                    @endif
+                    <!-- Hiển thị Logout cho mọi người dùng -->
+                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                 document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+            @endguest
+        </div>
     </div>
-</body>
+    <nav class="menu-bar">
+        <div class="big-navbar">
+            <div class="title-menu">
+                <a href="{{route('homepage')}}"><i class="fa-solid fa-house"></i></a>
+            </div>
+        </div>
+        <div class="big-navbar">
+            <div class="title-menu">
+                <a href="">HOT</a>
+            </div>
+        </div>
+        <div class="big-navbar">
+            <div class="title-menu">
+                <a href="">THEO DÕI</a>
+            </div>
+        </div>
+        <div class="big-navbar">
+            <div class="title-menu">
+                <a href="">LỊCH SỬ</a>
+            </div>
+        </div>
+        <div class="big-navbar">
+            <div class="title-menu">
+                <a href="">THỂ LOẠI</a>
+            </div>
+            <div class="content" id="content4">
+                <table>
+                    <tr>
+                        <td><a href="">ngôn tình</a></td>
+                        <td><a href="">đam mĩ</a></td>
+                        <td><a href="">xuyên không</a></td>
+                        <td><a href="">trinh thám</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">manga</a></td>
+                        <td><a href="">manwha</a></td>
+                        <td><a href="">manhua</a></td>
+                        <td><a href="">anime</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">phiêu lưu</a></td>
+                        <td><a href="">kinh dị</a></td>
+                        <td><a href="">lãng mạn</a></td>
+                        <td><a href="">thiếu nhi</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">horror</a></td>
+                        <td><a href="">cooking</a></td>
+                        <td><a href="">comedy</a></td>
+                        <td><a href="">cổ đại</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">drama</a></td>
+                        <td><a href="">webtoon</a></td>
+                        <td><a href="">harem</a></td>
+                        <td><a href="">thể thao</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">học đường</a></td>
+                        <td><a href="">hành động</a></td>
+                        <td><a href="">live action</a></td>
+                        <td><a href="">khoa học viễn tưởng</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="big-navbar">
+            <div class="title-menu">
+                <a href="">XẾP HẠNG</a>
+            </div>
+            <div class="content2">
+                <table>
+                    <tr>
+                        <td><a href="">Top All</a></td>
+                        <td><a href="">Top Tháng</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Top Tuần</a></td>
+                        <td><a href="">Top Ngày</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Top Follow</a></td>
+                        <td><a href="">Truyện Full</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Yêu Thích</a></td>
+                        <td><a href="">Mới Cập Nhật</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="">Truyện Mới</a></td>
+                        <td><a href="">Số Chapter</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </nav>
 
+    <main class="py-4" style="min-height: 70vh;">
+            @yield('content')
+    </main>
+
+    <!-- footer -->
+    <footer>
+        <div class="copyright">
+            <span>Bản quyền thuộc về © 2024 TruyenTranh</span>
+            <span>Quý độc giả vui lòng không sao chép dưới mọi hình thức</span>
+        </div>
+        <div class="contact">
+            <span><b>Mọi thông tin vui lòng liên hệ</b></span>
+            <span>Email: truyentranh@gmail.com</span>
+            <span>Zalo: 0999.999.xxx</span>
+            <span>Facebook: facebook.com/truyentranh</span>
+        </div>
+    </footer>
+</body>
 </html>
+

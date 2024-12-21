@@ -16,20 +16,20 @@
                 <div class="chucnang">
                     <a href=""><i class="fa-solid fa-house"></i></a>
                     <a href=""><i class="fa-solid fa-bars"></i></a>
-                    <a href="" id="buttonrollback"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></a>
-                    <select name="" id="">
-                        <option value="">Chapter 0</option>
-                        <option value="">Chapter 1</option>
-                        <option value="">Chapter 2</option>
-                        <option value="">Chapter 3</option>
-                        <option value="">Chapter 4</option>
-                        <option value="">Chapter 5</option>
+                    <a href="javascript:void(0);" id="buttonrollback"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></a>
+                    <select name="" id="chapter-select">
+                        <option value="0">Chapter 0</option>
+                        <option value="1">Chapter 1</option>
+                        <option value="2">Chapter 2</option>
+                        <option value="3">Chapter 3</option>
+                        <option value="4">Chapter 4</option>
+                        <option value="5">Chapter 5</option>
                     </select>
-                    <a href="" id="buttonturnup"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+                    <a href="javascript:void(0);" id="buttonturnup"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
                     <a href="" id="theodoi"><i class="fa fa-heart"></i><span> Theo dõi</span></a>
                 </div>
             </div>
-            <div class="truyentranh">
+            <div class="truyentranh" data-chapter="0" >
                 <div class="page-chapter">
                     <img src="imgs/0.jpg" alt="">
                 </div>
@@ -68,6 +68,20 @@
                 </div>
                 
             </div>
+            <div class="truyentranh" data-chapter="1" style="display: none;">
+            <div class="page-chapter">
+                    <img src="/imgs/0.jpg" alt="">
+                </div>
+                <div class="page-chapter">
+                    <img src="/imgs/4.jpg" alt="">
+                </div>
+                <div class="page-chapter">
+                    <img src="/imgs/0.jpg" alt="">
+                </div>
+                <div class="page-chapter">
+                    <img src="/imgs/4.jpg" alt="">
+                </div>
+            </div>
         </div>
     </div>
     <div id="progress">
@@ -77,16 +91,16 @@
         <div id="menuchucnang">
             <a href=""><i class="fa-solid fa-house"></i></a>
             <a href=""><i class="fa-solid fa-bars"></i></a>
-            <a href="" id="buttonrollback"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></a>
-            <select name="" id="">
-                <option value="">Chapter 0</option>
-                <option value="">Chapter 1</option>
-                <option value="">Chapter 2</option>
-                <option value="">Chapter 3</option>
-                <option value="">Chapter 4</option>
-                <option value="">Chapter 5</option>
+            <a href="javascript:void(0);" id="buttonrollback2"><i class="fa-solid fa-chevron-left" style="color: #ffffff;"></i></a>
+            <select name="" id="chapter-select2">
+                <option value="0">Chapter 0</option>
+                <option value="1">Chapter 1</option>
+                <option value="2">Chapter 2</option>
+                <option value="3">Chapter 3</option>
+                <option value="4">Chapter 4</option>
+                <option value="5">Chapter 5</option>
             </select>
-            <a href="" id="buttonturnup"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
+            <a href="javascript:void(0);" id="buttonturnup2"><i class="fa-solid fa-chevron-right" style="color: #ffffff;"></i></a>
             <a href="" id="menutheodoi"><i class="fa fa-heart"></i><span> Theo dõi</span></a>
         </div>
     </div>

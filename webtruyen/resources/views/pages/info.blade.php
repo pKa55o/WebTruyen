@@ -95,7 +95,7 @@
                 </table>
             </div>
         </div>
-        <div class="commentlayout">
+        <!-- <div class="commentlayout">
             <div class="titlecomment">
                 <span>Bình luận</span>
             </div>
@@ -106,7 +106,32 @@
             <div class="morecomment">
                 <a href="">Xem thêm bình luận</a>
             </div>
-        </div>
+        </div> -->
+        <div class="comments-section">
+                <!-- Form thêm bình luận -->
+                <div class="add-comment">
+                  <h3>Thêm bình luận</h3>
+                  <div class="textarea-container">
+                    <textarea id="comment-input" placeholder="Nhập bình luận của bạn..."></textarea>
+                    <div id="emoji-toolbar">
+                      <!-- Các emoji phổ biến -->
+                      <span class="emoji">😊</span> <span class="emoji">😂</span>
+                      <span class="emoji">😍</span> <span class="emoji">😎</span>
+                      <span class="emoji">😢</span> <span class="emoji">😡</span>
+                      <span class="emoji">👍</span> <span class="emoji">🎉</span>
+                    </div>
+                  </div>
+                  <button id="submit-comment">Gửi</button>
+                </div>
+              
+                <!-- Khu vực hiển thị bình luận -->
+                <div class="comments-list">
+                  <h3>Bình luận</h3>
+                  <ul id="comments-container">
+                    <!-- Các bình luận sẽ được thêm vào đây -->
+                  </ul>
+                </div>
+              </div>
     </div>
     <div class="right-content">
         <div class="themtruyen">
@@ -202,4 +227,5 @@
         </div>
     </div>
 </div>
+<script src="{{asset('js/giaodien2.js')}}"></script>
 @endsection

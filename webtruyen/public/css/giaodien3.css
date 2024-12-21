@@ -214,8 +214,7 @@ nav {
     font-size: 24px;
 }
 
-#buttonrollback,
-#buttonturnup {
+#buttonrollback, #buttonturnup, #buttonrollback2, #buttonturnup2 {
     width: 30px;
     height: 30px;
     background-color: #473d8bd9;
@@ -255,7 +254,7 @@ nav {
     border-radius: 50%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    z-index: 1000;
+    z-index: 1;
 }
 #progress-value {
     display: block;
@@ -288,7 +287,7 @@ nav {
     bottom: 0px;
     display: none;
     place-items: center;
-    z-index: 1;
+    z-index: 1500;
     background-color: white;
 }
 #menuchucnang {

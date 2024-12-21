@@ -1,0 +1,12 @@
+.card-header {
+    text-align: center;
+    background-color: #483d8b;
+    color: white;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.btn-primary {
+    background-color: #483d8b;
+    border-color: #483d8b;
+}

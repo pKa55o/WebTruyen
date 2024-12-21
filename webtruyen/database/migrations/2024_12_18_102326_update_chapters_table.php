@@ -23,7 +23,7 @@ class UpdateChaptersTable extends Migration
                 $table->string('ten_chapter', 255)->after('chapter_number');
             }
             if (!Schema::hasColumn('chapters', 'content')) {
-                $table->longBlob('content')->after('ten_chapter');
+                $table->binary('content')->after('ten_chapter');
             }
             $table->timestamps(); // Thêm timestamps nếu chưa có
         });

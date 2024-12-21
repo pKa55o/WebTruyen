@@ -334,7 +334,7 @@ nav {
     height: 40px;
 }
 
-.commentlayout {
+/* .commentlayout {
     width: 100%;
     margin-top: 20px;
     display: flex;
@@ -397,7 +397,107 @@ nav {
     border-bottom: 1px solid rgb(227, 227, 227);
     display: flex;
     align-items: center;
-}
+} */
+  
+  .comments-section {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  .add-comment {
+    margin-bottom: 20px;
+  }
+
+  .textarea-container {
+    position: relative;
+  }
+  
+  #comment-input {
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+  }
+  
+  #emoji-toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 5px;
+    margin-top: 5px;
+    background: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .emoji {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .emoji:hover {
+    transform: scale(1.2);
+  }
+
+  #submit-comment {
+    background-color: #483d8b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+  
+  
+  .textarea-container input[type="text"],
+  textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+  }
+  
+  .comments-list ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .comments-list li {
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .comment-avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .comment-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .comment-content {
+    flex-grow: 1;
+  }
 
 .right-content {
     width: 35%;
