@@ -32,19 +32,15 @@ Route::get('/search', [IndexController::class, 'search']) -> name('search');
 Route::get('/maynoigico', [IndexController::class, 'giaodien3']) -> name('giaodien3');
 //admin route
 Route::middleware(['auth', 'admin'])->group(function () {
-    //====================================== giao diện admin ==========================================
+    //giao diện admin
     Route::get('/admin', [AdminController::class, 'home'])->name('admin.home');
-    
-    //====================================== CRUD truyện ==============================================
-    
+    //giao diện thêm CRUD truyện
     Route::get('/admin/truyen', [TruyenController::class, 'index'])->name('truyen.index');
-    Route::put('/admin/truyen/{truyen_id/update', [TruyenController::class, 'update']) -> name ('truyen.update');
     Route::get('/admin/truyen/create', [TruyenController::class, 'create'])->name('truyen.create');
-    Route::get('/admin/truyen/{truyen_id}/edit', [TruyenController::class, 'edit'])->name('truyen.edit');
+    Route::get('/admin/truyen/{id}/edit', [TruyenController::class, 'edit'])->name('truyen.edit');
     Route::delete('truyen/{id}', [TruyenController::class, 'destroy'])->name('truyen.destroy');
 
-    //====================================== CRUD chapter ==============================================
-
+    //giao diện xử lí chapter
     Route::get('/admin/truyen/{truyen_id}/chapters/', [ChapterController::class, 'index'])->name('chapter.list');
     Route::get('/admin/truyen/{truyen_id}/chapters/create', [ChapterController::class, 'create'])->name('chapter.create_chapter');
     Route::post('/admin/truyen/{truyen_id}/chapters', [ChapterController::class, 'store'])->name('chapter.create_store');

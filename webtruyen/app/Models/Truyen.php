@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Truyen extends Model
 {
     use HasFactory;
-    // public $timestamps = false;
+    public $timestamps = false;
 
-    protected $table = 'truyen'; // tên tabnle db
+    protected $table = 'truyen'; // Tên bảng trong db
     protected $fillable = [
         'ten_truyen',
         'tac_gia',   
@@ -18,14 +18,20 @@ class Truyen extends Model
         'mo_ta',    
         'thumbnail',
     ];
-    //mqh 1-M với chapter
+
+    /**
+     * Quan hệ 1-N với bảng chapters (một truyện có nhiều chapter).
+     */
     public function chapters()
     {
         return $this->hasMany(Chapter::class, 'truyen_id', 'id');
     }
+
+    /**
+     * Quan hệ N-N với bảng category thông qua bảng liên kết truyen_category.
+     */
     public function categories()
 {
-    //mqh M-M giữa truyện với tag
     return $this->belongsToMany(
         Category::class,
         'truyen_category',
@@ -33,8 +39,12 @@ class Truyen extends Model
         'category_id'
     );
 }
+
+    /**
+     * Accessor để hiển thị danh sách thể loại đã chọn.
+     */
     public function getCategoryNamesAttribute()
     {
-        return $this->categories->pluck('name')->toArray(); //lấy tag list
+        return $this->categories->pluck('name')->toArray(); // Lấy danh sách tên thể loại
     }
 }
