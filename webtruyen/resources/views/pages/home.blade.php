@@ -1,6 +1,5 @@
 @extends('layout')
 @section('content')
-
 <div class="main-content">
     <div class="de-cu">
         <div class="title-de-cu">
